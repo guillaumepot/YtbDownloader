@@ -56,27 +56,6 @@ def check_file_exists(filepath) -> None:
         pass
 
 
-def add_to_logs(youtube, name) -> None:
-    """
-    Add the video name and link to the logs file.
-
-    Args:
-        youtube: An object representing a YouTube video.
-
-    Returns:
-        None
-    """
-    # Create folder if not exists
-    if not os.path.exists(f'./logs/{name}'):
-        os.makedirs(f'./logs/{name}')
-    
-    # Add to logs
-    video_name = youtube.title
-    video_link = youtube.watch_url
-    with open(f'./logs/{name}/logs.txt', 'a') as f:
-        f.write(f'{video_name} - {video_link} \n')
-
-
 def convert_to_audio(input_file):
     """
     Converts a video file to an audio file.
@@ -144,7 +123,18 @@ def download_media(youtube, output_folder, audio=False):
 
 def get_file(link, name, audio=False):
     """
-    
+    Downloads a file from a given YouTube link.
+
+    Args:
+        link (str): The YouTube link of the video.
+        name (str): The name of the file.
+        audio (bool, optional): Specifies whether to download the audio only. Defaults to False.
+
+    Returns:
+        None
+
+    Raises:
+        None
     """
     # Control the link
     check_link = control_link(link)
@@ -162,9 +152,6 @@ def get_file(link, name, audio=False):
     output_file_path = audio_storage if audio==True else video_storage
     filepath = os.path.join(output_file_path, title, '.mp3' if audio else '.mp4')
     check_file_exists(filepath)
-
-    # Add to logs
-    add_to_logs(youtube, name)
 
     # Download Media
     download_media(youtube, output_folder = output_file_path, audio=audio)

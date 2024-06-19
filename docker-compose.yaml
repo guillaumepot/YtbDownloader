@@ -1,0 +1,27 @@
+# Version : 0.1.0
+# Current state : prod
+# Author : Guillaume Pot
+# Contact : guillaumepot.pro@outlook.com
+
+
+services:
+  # Streamlit Container
+  container_streamlit:
+    image: streamlit_yt:latest
+    #image: unclad3610/ytb_dl_streamlit:latest
+    container_name: bank_app_streamlit
+    environment:
+      - AUDIO_PATH='./storage/audio/'
+      - VIDEO_PATH='./storage/video/'
+      - AVAILABLE_KEYS=User:f165f1az6516516d5az16d5a1f65ag1a65f1a65f1eag65z1c65e11dsa6azsazokapzdkoa455
+    volumes:
+      - ./storage:/app/storage
+      - ./logs:/app/logs
+    ports:
+      - "8501:8030"
+    restart: always
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://container_streamlit:8030"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
