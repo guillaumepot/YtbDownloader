@@ -23,7 +23,6 @@ For tests on your own content only, not provided to download illegal content.
 ## Table of Contents
 - [Repository Architecture](#repository-architecture)
 - [Requirements](#requirements)
-- [Installation](#installation)
 - [Changelogs](#Changelogs)
 - [Roadmap](#roadmap)
 
