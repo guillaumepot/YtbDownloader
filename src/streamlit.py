@@ -16,8 +16,8 @@ from datetime import datetime
 from script import get_file
 
 
-audio_path = os.getenv("AUDIO_PATH",'./storage/audio/')
-video_path = os.getenv("VIDEO_PATH", './storage/video/')
+audio_path = os.getenv("AUDIO_PATH",'../storage/audio/')
+video_path = os.getenv("VIDEO_PATH", '../storage/video/')
 available_keys_str = os.getenv("AVAILABLE_KEYS")
 available_keys_list = available_keys_str.split(',')
 available_keys = {item.split(':')[0]: item.split(':')[1] for item in available_keys_list}
