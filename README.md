@@ -12,8 +12,8 @@ For tests on your own content only, not provided to download illegal content.
 
 ## Project Information
 
-- **Version**: 0.1.0
-- **Development Stage**: Prod
+- **Version**: 0.2.0
+- **Development Stage**: Dev
 - **Author**: Guillaume Pot
 - **Contact Information**: guillaumepot.pro@outlook.com
 
@@ -80,12 +80,12 @@ For tests on your own content only, not provided to download illegal content.
 
 ## Requirements
 
-**Server app**
+**Server version**
     - Python
     - Docker
     - Docker Compose
 
-**Standalone**
+**App version**
     - Python
     - [WIP]
 
@@ -112,6 +112,6 @@ For tests on your own content only, not provided to download illegal content.
 
 **[Todo]**  
 ```
-0.1.1
-- Add standalone script
+0.2.0
+- Server & App version
 ```
