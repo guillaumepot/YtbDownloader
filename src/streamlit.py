@@ -1,23 +1,89 @@
 """
 ### STREAMLIT APP - Main file ###
 """
-# Version : 0.1.0
-# Current state : Prod
-# Author : Guillaume Pot
-# Contact : guillaumepot.pro@outlook.com
-
-
-
 import streamlit as st
 from pytube import YouTube
+from pytubefix.cli import on_progress
 import os
 from datetime import datetime
 
 from script import get_file
 
 
-audio_path = os.getenv("AUDIO_PATH",'../storage/audio/')
-video_path = os.getenv("VIDEO_PATH", '../storage/video/')
+
+
+from pytube.innertube import _default_clients
+from pytube import cipher
+import re
+
+_default_clients["ANDROID"]["context"]["client"]["clientVersion"] = "19.08.35"
+_default_clients["IOS"]["context"]["client"]["clientVersion"] = "19.08.35"
+_default_clients["ANDROID_EMBED"]["context"]["client"]["clientVersion"] = "19.08.35"
+_default_clients["IOS_EMBED"]["context"]["client"]["clientVersion"] = "19.08.35"
+_default_clients["IOS_MUSIC"]["context"]["client"]["clientVersion"] = "6.41"
+_default_clients["ANDROID_MUSIC"] = _default_clients["ANDROID_CREATOR"]
+
+
+
+def get_throttling_function_name(js: str) -> str:
+    """Extract the name of the function that computes the throttling parameter.
+
+    :param str js:
+        The contents of the base.js asset file.
+    :rtype: str
+    :returns:
+        The name of the function used to compute the throttling parameter.
+    """
+    function_patterns = [
+        r'a\.[a-zA-Z]\s*&&\s*\([a-z]\s*=\s*a\.get\("n"\)\)\s*&&\s*'
+        r'\([a-z]\s*=\s*([a-zA-Z0-9$]+)(\[\d+\])?\([a-z]\)',
+        r'\([a-z]\s*=\s*([a-zA-Z0-9$]+)(\[\d+\])\([a-z]\)',
+    ]
+    #logger.debug('Finding throttling function name')
+    for pattern in function_patterns:
+        regex = re.compile(pattern)
+        function_match = regex.search(js)
+        if function_match:
+            #logger.debug("finished regex search, matched: %s", pattern)
+            if len(function_match.groups()) == 1:
+                return function_match.group(1)
+            idx = function_match.group(2)
+            if idx:
+                idx = idx.strip("[]")
+                array = re.search(
+                    r'var {nfunc}\s*=\s*(\[.+?\]);'.format(
+                        nfunc=re.escape(function_match.group(1))),
+                    js
+                )
+                if array:
+                    array = array.group(1).strip("[]").split(",")
+                    array = [x.strip() for x in array]
+                    return array[int(idx)]
+
+    raise RegexMatchError(
+        caller="get_throttling_function_name", pattern="multiple"
+    )
+
+cipher.get_throttling_function_name = get_throttling_function_name
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+audio_path = os.getenv("AUDIO_PATH")
+video_path = os.getenv("VIDEO_PATH")
 available_keys_str = os.getenv("AVAILABLE_KEYS")
 available_keys_list = available_keys_str.split(',')
 available_keys = {item.split(':')[0]: item.split(':')[1] for item in available_keys_list}
@@ -100,7 +166,7 @@ if st.session_state['key'] is not None:
 
 
         if st.button("Rechercher", key="search_content"):
-            video = YouTube(link)
+            video = YouTube(link, on_progress_callback = on_progress)
             stream = video.streams.get_highest_resolution()
             filesize_in_mb = stream.filesize / 1024 / 1024  # Convert bytes to megabytes
 
