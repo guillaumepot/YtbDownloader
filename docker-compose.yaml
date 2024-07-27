@@ -1,8 +1,10 @@
 services:
   # Streamlit Container
   container_streamlit:
-    image: unclad3610/ytb_dl_streamlit:latest
-    container_name: bank_app_streamlit
+    build: .
+    image: streamlit_yt:test
+    #image: unclad3610/ytb_dl_streamlit:latest
+    container_name: ytb_dl_streamlit
     environment:
       - AUDIO_PATH='./storage/audio/'
       - VIDEO_PATH='./storage/video/'
