@@ -1,13 +1,13 @@
 services:
   # Streamlit Container
   container_streamlit:
-    build: .
-    image: streamlit_yt:test
-    #image: unclad3610/ytb_dl_streamlit:latest
+    #build: .
+    #image: streamlit_yt:test
+    image: unclad3610/ytb_dl_streamlit:latest
     container_name: ytb_dl_streamlit
     environment:
-      - AUDIO_PATH='./storage/audio/'
-      - VIDEO_PATH='./storage/video/'
+      - AUDIO_PATH=./storage/audio/
+      - VIDEO_PATH=./storage/video/
       - AVAILABLE_KEYS=User:f165f1az6516516d5az16d5a1f65ag1a65f1a65f1eag65z1c65e11dsa6azsazokapzdkoa455
     volumes:
       - ./storage:/app/storage
