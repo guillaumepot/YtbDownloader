@@ -68,18 +68,6 @@ cipher.get_throttling_function_name = get_throttling_function_name
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 audio_path = os.getenv("AUDIO_PATH")
 video_path = os.getenv("VIDEO_PATH")
 available_keys_str = os.getenv("AVAILABLE_KEYS")
