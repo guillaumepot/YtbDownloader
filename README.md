@@ -1,7 +1,13 @@
 # YtbDownloader
+
 A video downloader and Audio converter for Youtube.
 
 For tests on your own content only, not provided to download illegal content.
+
+
+Two versions:
+- Server-client (with docker)
+- App GUI (tkinter python)
 
 
 <img src="./media/ytb_downloader.jpeg" width="350" height="350">
@@ -12,7 +18,7 @@ For tests on your own content only, not provided to download illegal content.
 
 ## Project Information
 
-- **Version**: 0.1.0
+- **Version**: 0.2.0
 - **Development Stage**: Prod
 - **Author**: Guillaume Pot
 - **Contact Information**: guillaumepot.pro@outlook.com
@@ -40,40 +46,54 @@ For tests on your own content only, not provided to download illegal content.
 |           |
 |           └── upload_docker_images.yaml
 |   
-├── logs
+├── architecture
+│        │
+|        |
+|        ├── app
+|        |    |
+|        |    ├── app_functions.py
+|        |    |
+|        |    ├── app.py
+|        |    |
+|        |    └── ytb_downloader.jpeg
+|        |
+│        └── client-server
+|                  |
+|                  ├── logs
+|                  |
+|                  ├── src
+|                  |    |
+|                  |    ├── Dockerfile
+|                  |    |
+|                  |    ├── requirements.txt
+|                  |    |
+|                  |    ├── script.py
+|                  |    |
+|                  |    └── streamlit
+|                  |
+|                  ├── storage
+|                  | 
+|                  ├── audio
+|                  |
+|                  ├── video
+|                  |
+|                  └── docker-compose.yaml
 |        
 ├── changelogs
 |        
 ├── media
-|       |
-|       └── ytb_downloader.jpeg
-|
-|
-├── src
-|    |
-|    ├── Dockerfile
-|    |
-|    ├── requirements.txt
-|    |
-|    ├── script.py
-|    |
-|    └── streamlit
-|
-├── storage
 |     |
-|     ├── audio
-|     |
-|     └── video
+|     └── ytb_downloader.jpeg
 |
-├── utils
-|     |
-|     └── script_standalone.py
-|
-├── docker-compose.yaml
+├── .gitignore
 |
 ├── LICENSE
 │
-└── README.md
+├── README.md
+|
+└── requirements.txt
+
+
 ```
 
 ---
@@ -81,37 +101,20 @@ For tests on your own content only, not provided to download illegal content.
 ## Requirements
 
 **Server app**
-    - Python
     - Docker
     - Docker Compose
-
-**Standalone**
-    - Python
-    - [WIP]
 
 ---
 
 ## Changelogs
 
-[WIP]
-"[v0.1.0](./changelogs/0.1.0.md)"
-
+[v0.2.0](./changelogs/0.2.0.md)
+[v0.1.0](./changelogs/0.1.0.md)
 
 
 ---
 
 ## Roadmap
 
-**[Done]**
-```
-0.1.0
-- First version of the app containing a script & a Streamlit UI + Dockerfile & compose
-
-```
-
-
-**[Todo]**  
-```
-0.1.1
-- Add standalone script
-```
+-
+-
