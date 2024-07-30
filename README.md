@@ -4,6 +4,11 @@ A video downloader and Audio converter for Youtube.
 For tests on your own content only, not provided to download illegal content.
 
 
+Two versions available:
+    - Server-client architecture (using docker)
+    - App arhcitecture with GUI
+
+
 <img src="./media/ytb_downloader.jpeg" width="350" height="350">
 
 
@@ -12,7 +17,7 @@ For tests on your own content only, not provided to download illegal content.
 
 ## Project Information
 
-- **Version**: 0.1.0
+- **Version**: 0.2.0
 - **Development Stage**: Prod
 - **Author**: Guillaume Pot
 - **Contact Information**: guillaumepot.pro@outlook.com
@@ -80,21 +85,22 @@ For tests on your own content only, not provided to download illegal content.
 
 ## Requirements
 
-**Server app**
-    - Python
+**Server-Client architecture**
     - Docker
     - Docker Compose
 
-**Standalone**
-    - Python
-    - [WIP]
+
+
+**App**
+[WIP]
+
 
 ---
 
 ## Changelogs
 
-[WIP]
-"[v0.1.0](./changelogs/0.1.0.md)"
+[v0.2.0](./changelogs/0.2.0.md)
+[v0.1.0](./changelogs/0.1.0.md)
 
 
 
@@ -102,16 +108,8 @@ For tests on your own content only, not provided to download illegal content.
 
 ## Roadmap
 
-**[Done]**
 ```
-0.1.0
-- First version of the app containing a script & a Streamlit UI + Dockerfile & compose
-
-```
-
-
-**[Todo]**  
-```
-0.1.1
-- Add standalone script
+-
+-
+-
 ```
