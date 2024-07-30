@@ -1,0 +1,4 @@
+pip install pyinstaller
+
+
+pyinstaller --onefile --add-data 'ytb_downloader.jpeg;data/ytb_downloader.jpeg' --add-data 'app_functions.py;data/app_functions.py' app.py
