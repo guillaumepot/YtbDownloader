@@ -40,8 +40,8 @@ jobs:
       - name: Build and push Docker Image
         uses: docker/build-push-action@v4
         with:
-          context: ./src
-          file: ./src/Dockerfile
+          context: ./architecture/client-server/src
+          file: ./architecture/client-server/src/Dockerfile
           push: true
           platforms: linux/amd64,linux/arm64/v8
           tags: unclad3610/ytb_dl_streamlit:${{ env.streamlit_version }}, unclad3610/ytb_dl_streamlit:latest
