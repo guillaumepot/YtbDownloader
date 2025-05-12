@@ -1,0 +1,53 @@
+# This workflow will run unit tests for functions
+
+name: Unit tests
+
+on:
+  # push:
+  #   branches:
+  #     - 'dev-*'
+  workflow_dispatch:
+
+
+permissions:
+  contents: read
+
+jobs:
+  unit_tests:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.10.12
+  
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r ./.github/workflows/requirements.txt
+
+    - name: Run GTFS ingestion function tests
+      # UPDATE UNIT TESTS PATH
+      run: |
+        cd ./src/unit_tests/                        
+        pytest my_unit_tests.py
+
+    # Need secrets to send email
+    - name: Notify owner by email if tests fail
+      if: failure()
+      uses: dawidd6/action-send-mail@v3
+      with:
+        server_address: smtp.gmail.com
+        server_port: 465
+        username: ${{ secrets.WORKFLOW_EMAIL_USERNAME }}
+        password: ${{ secrets.WORKFLOW_EMAIL_PASSWORD }}
+        subject: '[Train repo] - Unit Test Failure Notification'
+        body: The unit tests have failed. Please check the workflow logs for details.
+        to: ${{ secrets.WORKFLOW_EMAIL_DESTINATION }}
+        from: ${{ secrets.WORKFLOW_EMAIL_PASSWORD }}

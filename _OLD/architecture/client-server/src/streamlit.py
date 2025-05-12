@@ -129,7 +129,7 @@ if st.session_state['key'] is not None:
                     get_file(link, st.session_state['name'], audio=True)
                     
 
-                st.write(f'Téléchargement terminé! \n')
+                st.write('Téléchargement terminé! \n')
 
                 # Log
                 add_to_logs(name = st.session_state['name'],

@@ -1,0 +1,27 @@
+# .github/workflows/ruff.yml
+name: Ruff on merge 
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  ruff-linter:
+    name: Run Ruff Linter
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+
+      - name: Install Ruff
+        run: pip install ruff==0.4.0
+
+      - name: Run Ruff on src/ and test/
+        run: ruff check src/ test/

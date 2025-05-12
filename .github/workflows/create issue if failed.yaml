@@ -1,0 +1,16 @@
+jobs:
+  job_name:
+    runs-on: ubuntu-latest
+    steps:    
+    - name: Create Issue if Failed
+      if: failure()
+      uses: actions/github-script@v6
+      with:
+        script: |
+          github.rest.issues.create({
+            owner: context.repo.owner,
+            repo: context.repo.name,
+            title: '❌ Échec de la synchronisation de la base de données',
+            body: `La synchronisation de la base de données a échoué.\n\nVoir les détails : ${context.serverUrl}/${context.repo.owner}/${context.repo.name}/actions/runs/${context.runId}`,
+            labels: ['bug', 'database']
+          })

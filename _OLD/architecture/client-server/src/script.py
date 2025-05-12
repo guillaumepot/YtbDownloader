@@ -110,7 +110,7 @@ def download_media(youtube, output_folder, audio=False):
         
 
         # Convert if audio
-        if audio == True:    
+        if audio:    
             convert_to_audio(filename)
 
         else:
@@ -139,7 +139,7 @@ def get_file(link, name, audio=False):
     """
     # Control the link
     check_link = control_link(link)
-    if check_link == False:
+    if not check_link:
         return print("Modifier mauvais lien(s)")
     
     # Get youtube object from link
@@ -150,7 +150,7 @@ def get_file(link, name, audio=False):
     title = str(youtube.title)
     title = title.lower().replace(' ', '_')
 
-    output_file_path = audio_storage if audio==True else video_storage
+    output_file_path = audio_storage if audio else video_storage
     filepath = os.path.join(output_file_path, title, '.mp3' if audio else '.mp4')
     check_file_exists(filepath)
 
