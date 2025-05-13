@@ -133,6 +133,15 @@ wheels = [
 ]
 
 [[package]]
+name = "pytubefix"
+version = "8.13.1"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/db/9a/888947683e333bd3d20a3958115b6c4229d3cd6ff0f75423e841e8606da2/pytubefix-8.13.1.tar.gz", hash = "sha256:c5de0761101a78cb189eec88163368d2300bd86d3c7826ba0e1addb310c58d9c", size = 733912 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/c1/76/a9ba64e808f53b7d491c99afc47f4364a0b841bc31d78cc0cd6706ce6520/pytubefix-8.13.1-py3-none-any.whl", hash = "sha256:302eb359d0e2c9fbe25e88439c731d066cc8e5c10dd6a7bac2ce964ff9695255", size = 731504 },
+]
+
+[[package]]
 name = "pyyaml"
 version = "6.0.2"
 source = { registry = "https://pypi.org/simple" }
@@ -229,6 +238,7 @@ name = "ytbdownloader"
 version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
+    { name = "pytubefix" },
     { name = "tqdm" },
 ]
 
@@ -241,7 +251,10 @@ dev = [
 ]
 
 [package.metadata]
-requires-dist = [{ name = "tqdm", specifier = ">=4.67.1" }]
+requires-dist = [
+    { name = "pytubefix", specifier = ">=8.13.1" },
+    { name = "tqdm", specifier = ">=4.67.1" },
+]
 
 [package.metadata.requires-dev]
 dev = [

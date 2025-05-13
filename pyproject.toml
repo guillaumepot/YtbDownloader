@@ -5,6 +5,7 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12.3"
 dependencies = [
+    "pytubefix>=8.13.1",
     "tqdm>=4.67.1",
 ]
 
